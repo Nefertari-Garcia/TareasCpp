@@ -1,0 +1,205 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    PROBLEMA DE PROGRAMACIÓN ORIENTADA A OBJETOS              ║
+║                          SISTEMA DE AGENDA MEJORADO                          ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+CONTEXTO:
+Has trabajado con una agenda básica usando estructuras en C. Ahora deberás 
+reimplementar este sistema usando Programación Orientada a Objetos en C++.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📋 OBJETIVOS DEL EJERCICIO:
+
+1. Aplicar los principios de POO: Encapsulamiento, Abstracción, Herencia
+2. Crear clases con atributos privados y métodos públicos
+3. Implementar constructores y destructores
+4. Usar composición de clases
+5. Validar datos de entrada
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📝 REQUISITOS:
+
+CLASE 1: Fecha
+--------------
+Atributos privados:
+  - dia (int)
+  - mes (int)
+  - anyo (int)
+
+Métodos públicos:
+  - Constructor por defecto
+  - Constructor con parámetros (dia, mes, anyo)
+  - setDia(int d) - Validar que el día esté entre 1 y 31
+  - setMes(int m) - Validar que el mes esté entre 1 y 12
+  - setAnyo(int a) - Validar que el año sea mayor a 1900
+  - getDia(), getMes(), getAnyo()
+  - mostrarFecha() - Formato: DD/MM/AAAA
+  - esFechaValida() - Verificar si la fecha es válida (considerar meses con 
+    diferentes días y años bisiestos)
+  - calcularEdad() - Calcular la edad actual basándose en la fecha
+
+
+CLASE 2: Contacto
+-----------------
+Atributos privados:
+  - nombre (string)
+  - domicilio (string)
+  - telefono (string)
+  - correo (string)
+  - fechaNacimiento (objeto de clase Fecha) <-- COMPOSICIÓN
+
+Métodos públicos:
+  - Constructor por defecto
+  - Constructor con parámetros
+  - Setters para cada atributo con validaciones:
+    * setNombre() - No vacío, mínimo 3 caracteres
+    * setDomicilio() - No vacío
+    * setTelefono() - Exactamente 10 dígitos
+    * setCorreo() - Debe contener "@" y "."
+  - Getters para cada atributo
+  - mostrarContacto() - Mostrar toda la información formateada
+  - obtenerEdad() - Delegar a fechaNacimiento.calcularEdad()
+
+
+CLASE 3: Agenda
+---------------
+Atributos privados:
+  - contactos (arreglo de objetos Contacto o vector)
+  - cantidadContactos (int)
+  - capacidadMaxima (int) - Por defecto 10
+
+Métodos públicos:
+  - Constructor por defecto
+  - Constructor que permita definir capacidad máxima
+  - agregarContacto(Contacto c) - Validar que no se exceda la capacidad
+  - eliminarContacto(int indice) - Eliminar contacto por posición
+  - buscarContactoPorNombre(string nombre) - Retornar índice o -1
+  - modificarContacto(int indice, Contacto nuevoContacto)
+  - mostrarTodosContactos()
+  - mostrarContacto(int indice)
+  - ordenarContactosPorNombre() - BONUS: Ordenar alfabéticamente
+  - getCantidadContactos()
+  - estaLlena() - Verificar si la agenda está llena
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 FUNCIONALIDADES DEL MENÚ PRINCIPAL:
+
+1. AGREGAR CONTACTO
+   - Solicitar todos los datos
+   - Validar cada campo
+   - Confirmar si se agregó exitosamente
+
+2. LISTAR TODOS LOS CONTACTOS
+   - Mostrar todos los contactos con formato
+   - Incluir edad calculada
+   - Mostrar contador de contactos
+
+3. BUSCAR CONTACTO
+   - Buscar por nombre
+   - Mostrar información completa si se encuentra
+   - Mensaje de error si no existe
+
+4. MODIFICAR CONTACTO
+   - Listar contactos con índices
+   - Seleccionar cuál modificar
+   - Permitir editar cada campo
+
+5. ELIMINAR CONTACTO
+   - Mostrar lista de contactos
+   - Seleccionar cuál eliminar
+   - Confirmar eliminación
+
+6. MOSTRAR ESTADÍSTICAS
+   - Cantidad de contactos registrados
+   - Edad promedio
+   - Contacto más joven y más viejo
+
+7. SALIR
+   - Despedida y liberación de recursos
+
+═══════════════════════════════════════════════════════════════════════════════
+
+⚠️ VALIDACIONES REQUERIDAS:
+
+• Fecha de nacimiento no puede ser futura
+• Teléfono debe ser numérico de 10 dígitos
+• Correo debe tener formato válido (contiene @ y .)
+• Nombre no puede estar vacío
+• Verificar límites del arreglo antes de agregar/eliminar
+
+═══════════════════════════════════════════════════════════════════════════════
+
+💡 CONCEPTOS POO A APLICAR:
+
+✓ ENCAPSULAMIENTO: Atributos privados con acceso mediante getters/setters
+✓ ABSTRACCIÓN: Ocultar complejidad de validaciones dentro de las clases
+✓ COMPOSICIÓN: La clase Contacto contiene un objeto Fecha
+✓ MODULARIDAD: Cada clase tiene una responsabilidad específica
+✓ VALIDACIÓN: Verificar datos antes de almacenarlos
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📦 ENTREGABLES:
+
+1. Archivo: Agenda_POO.cpp (programa completo)
+   O separado en:
+   - Fecha.h / Fecha.cpp
+   - Contacto.h / Contacto.cpp
+   - Agenda.h / Agenda.cpp
+   - main.cpp
+
+2. Programa debe compilar sin errores
+3. Todas las funcionalidades del menú deben funcionar
+4. Validaciones implementadas correctamente
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🌟 BONUS (OPCIONAL - PUNTOS EXTRA):
+
+• Implementar sobrecarga de operadores (<<, >>, ==, <)
+• Guardar y cargar contactos desde archivo
+• Usar vector<Contacto> en lugar de arreglo estático
+• Implementar búsqueda por múltiples criterios
+• Crear una clase persona base y heredar Contacto de ella
+• Manejo de excepciones para validaciones
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 CRITERIOS DE EVALUACIÓN:
+
+[20%] Correcta implementación de clases con encapsulamiento
+[20%] Validaciones funcionando correctamente
+[20%] Menú interactivo completo y funcional
+[15%] Composición (Fecha dentro de Contacto)
+[15%] Código limpio, comentado y bien estructurado
+[10%] Manejo de errores y casos límite
+
+═══════════════════════════════════════════════════════════════════════════════
+
+💭 EJEMPLO DE USO ESPERADO:
+
+    Fecha f1(15, 8, 2000);
+    
+    Contacto c1;
+    c1.setNombre("Juan Perez");
+    c1.setTelefono("5551234567");
+    c1.setCorreo("juan@email.com");
+    c1.setDomicilio("Av. Principal 123");
+    c1.fechaNacimiento = f1;
+    
+    Agenda miAgenda(5); // Capacidad de 5 contactos
+    miAgenda.agregarContacto(c1);
+    miAgenda.mostrarTodosContactos();
+
+═══════════════════════════════════════════════════════════════════════════════
+
+¡ÉXITO EN TU PROYECTO!
+
+Recuerda: La POO te ayuda a organizar mejor tu código, hacerlo más mantenible
+y reutilizable. Piensa en objetos del mundo real y cómo interactúan entre sí.
+
+═══════════════════════════════════════════════════════════════════════════════
