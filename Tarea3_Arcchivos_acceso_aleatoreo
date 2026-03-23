@@ -1,64 +1,39 @@
 #include <iostream>
 #include <fstream>
-#include <iomanip>
-#include <string>
-#include <sstream>
 using namespace std;
 
-void mostrarEncabezado(const string &titulo)
-{
-    cout << "\n---------------------------------------------\n";
-    cout << " " << titulo << "\n";
-    cout << "---------------------------------------------\n";
-    cout << left
-         << setw(15) << "NOMBRE"
-         << setw(8) << "EDAD"
-         << setw(15) << "DEPORTE" << "\n";
-}
-void mostrarPorRango(int edadMin, int edadMax, const string &titulo)
-{
-    ifstream archivoEntrada("deportistas.txt");
-    if (!archivoEntrada)
-    {
-        cerr << "No se pudo abrir el archivo 'deportistas.txt'." << endl;
-        return;
-    }
-    mostrarEncabezado(titulo);
-    string nombre, deporte;
-    int edad;
-    bool encontrado = false;
-    while (archivoEntrada >> nombre >> edad >> deporte)
-    {
-        if (edad >= edadMin && edad <= edadMax)
-        {
-            cout << left
-                 << setw(15) << nombre
-                 << setw(8) << edad
-                 << setw(15) << deporte << "\n";
-            encontrado = true;
-        }
-    }
-    if (!encontrado)
-    {
-        cout << " (No se encontraron deportistas en este rango)\n";
-    }
-    cout << "---------------------------------------------\n";
-    archivoEntrada.close();
-}
-void mostrarMenu()
-{
-    cout << "\n=============================================\n";
-    cout << "\nEscriba el numero de socio(De 1 a 100, 0 para terminar la entrada)\n";
-    cout << "=============================================\n";
-}
 int main()
 {
-    int opcion;
-    do
-    {
-        mostrarMenu();
-        cin >> opcion;
 
-    } while (opcion != 0);
+    int socio, edad;
+    string nombre, deporte;
+
+    ofstream archivo("socios.txt");
+
+    if (!archivo)
+    {
+        cout << "Error al crear el archivo" << endl;
+        return 1;
+    }
+
+    cout << "Escriba el numero de socio (De 1 a 100, 0 para terminar la entrada)" << endl;
+    cin >> socio;
+
+    while (socio != 0)
+    {
+
+        cout << "Teclea nombre, edad y deporte" << endl;
+        cin >> nombre >> edad >> deporte;
+
+        archivo << socio << " " << nombre << " " << edad << " " << deporte << endl;
+
+        cout << "Escriba el numero de socio (De 1 a 100, 0 para terminar la entrada)" << endl;
+        cin >> socio;
+    }
+
+    archivo.close();
+
+    cout << "\nDatos guardados en el archivo socios.txt" << endl;
+
     return 0;
 }

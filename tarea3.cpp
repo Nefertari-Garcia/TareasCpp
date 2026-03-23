@@ -1,0 +1,36 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+
+    int socio, edad;
+    string nombre, deporte;
+
+    ofstream archivo("socios.txt");
+
+    if(!archivo){
+        cout<<"Error al crear el archivo"<<endl;
+        return 1;
+    }
+
+    cout<<"Escriba el numero de socio (De 1 a 100, 0 para terminar la entrada)"<<endl;
+    cin>>socio;
+
+    while(socio != 0){
+
+        cout<<"Teclea nombre, edad y deporte"<<endl;
+        cin>>nombre>>edad>>deporte;
+
+        archivo<<socio<<" "<<nombre<<" "<<edad<<" "<<deporte<<endl;
+
+        cout<<"Escriba el numero de socio (De 1 a 100, 0 para terminar la entrada)"<<endl;
+        cin>>socio;
+    }
+
+    archivo.close();
+
+    cout<<"\nDatos guardados en el archivo socios.txt"<<endl;
+
+    return 0;
+}

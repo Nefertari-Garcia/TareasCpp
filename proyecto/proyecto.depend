@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1773277142 source:c:\laragon\www\proyecto\tareascpp\proyecto\main.cpp
+	<iostream>
+	<fstream>
+	<cstdlib>
+	"DatosCliente.h"
+
+1773275564 source:c:\laragon\www\proyecto\tareascpp\proyecto\src\datoscliente.cpp
+	"DatosCliente.h"
+
+1773275807 c:\laragon\www\proyecto\tareascpp\proyecto\include\datoscliente.h
+	<string>
+
+1773276205 source:c:\laragon\www\proyecto\tareascpp\proyecto\datoscliente.cpp
+	<string>
+	<string.h>
+	"DatosCliente.h"
+
+1773277248 c:\laragon\www\proyecto\tareascpp\proyecto\datoscliente.h
+	<string>
+
